@@ -9,25 +9,24 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value = "/post")
 public class PostController {
 
     @Autowired
     private PostManagementService service;
 
-    @GetMapping(value = "/getAll")
+    @RequestMapping(value = "getEmpleados",method = RequestMethod.GET)
     public ResponseEntity getAll(){
         return new ResponseEntity(service.getAll(),HttpStatus.OK);
     }
-    @PostMapping(value = "/add")
+    @RequestMapping(value = "empleado",method = RequestMethod.POST)
     public ResponseEntity add(@RequestBody EmpleadosDto post){
         return new ResponseEntity(service.add(post), HttpStatus.OK);
     }
-    @PutMapping(value = "/{id}/edit")
+    @RequestMapping(value = "empleado/{id}",method = RequestMethod.PUT)
     public ResponseEntity edit(@PathVariable(value = "id")String id,@RequestBody EmpleadosDto post){
         return new ResponseEntity(service.edit(id,post),HttpStatus.OK);
     }
-    @DeleteMapping(value = "/{id}/delete")
+    @RequestMapping(value = "empleado/{id}",method = RequestMethod.DELETE)
     public ResponseEntity delete(@PathVariable(value = "id")String id){
         return new ResponseEntity(service.delete(id),HttpStatus.OK);
     }
