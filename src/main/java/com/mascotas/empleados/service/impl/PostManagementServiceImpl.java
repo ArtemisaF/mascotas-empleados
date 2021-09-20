@@ -6,6 +6,7 @@ import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.QuerySnapshot;
 import com.google.cloud.firestore.WriteResult;
 import com.mascotas.empleados.dto.EmpleadosDto;
+import com.mascotas.empleados.dto.MacotasDto;
 import com.mascotas.empleados.firebase.FirebaseInitializer;
 import com.mascotas.empleados.service.PostManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,6 +87,66 @@ public class PostManagementServiceImpl implements PostManagementService {
         }
     }
 
+    @Override
+    public Boolean addM(MacotasDto post) {
+        Map<String, Object> docData = getDocDataM(post);
+        ApiFuture<WriteResult> writeResultApiFuture= getCollectionM().document().create(docData);
+
+        try {
+            if (null != writeResultApiFuture.get()) {
+                return Boolean.TRUE;
+            }
+            return Boolean.FALSE;
+        } catch (Exception e) {
+            return Boolean.FALSE;
+        }
+    }
+
+    @Override
+    public List<MacotasDto> getAllM() {
+        List<MacotasDto> response= new ArrayList<>();
+        MacotasDto post;
+
+        ApiFuture<QuerySnapshot> querySnapshotApiFuture= getCollectionM().get();
+        try {
+            for (DocumentSnapshot doc: querySnapshotApiFuture.get().getDocuments()) {
+                post = doc.toObject(MacotasDto.class);
+                post.setId(doc.getId());
+                response.add(post);
+            }
+            return  response;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    @Override
+    public Boolean editM(String id, MacotasDto post) {
+        Map<String, Object> docData = getDocDataM(post);
+        ApiFuture<WriteResult> writeResultApiFuture= getCollectionM().document(id).set(docData);
+        try {
+            if (null != writeResultApiFuture.get()) {
+                return Boolean.TRUE;
+            }
+            return Boolean.FALSE;
+        } catch (Exception e) {
+            return Boolean.FALSE;
+        }
+    }
+
+    @Override
+    public Boolean deleteM(String id) {
+        ApiFuture<WriteResult> writeResultApiFuture= getCollectionM().document(id).delete();
+        try {
+            if (null != writeResultApiFuture.get()) {
+                return Boolean.TRUE;
+            }
+            return Boolean.FALSE;
+        } catch (Exception e) {
+            return Boolean.FALSE;
+        }
+    }
+
     private CollectionReference getCollection() {
         return firebase.getFirestore().collection("Empleados");
     }
@@ -99,6 +160,19 @@ public class PostManagementServiceImpl implements PostManagementService {
         docData.put("fechaDeCreacion", post.getFechaDeCreacion());
         docData.put("nombre", post.getNombre());
         docData.put("rol", post.getRol());
+        return docData;
+    }
+    private CollectionReference getCollectionM() {
+        return firebase.getFirestore().collection("Mascotas");
+    }
+    private Map<String, Object> getDocDataM(MacotasDto post) {
+        Map<String,Object> docData= new HashMap<>();
+        docData.put("tamaño",post.getTamaño());
+        docData.put("raza",post.getRaza());
+        docData.put("owner",post.getOwner());
+        docData.put("name",post.getName());
+        docData.put("edad",post.getEdad());
+        docData.put("cuidados",post.getCuidados());
         return docData;
     }
 }
