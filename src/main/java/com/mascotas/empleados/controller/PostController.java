@@ -3,11 +3,11 @@ package com.mascotas.empleados.controller;
 import com.mascotas.empleados.dto.EmpleadosDto;
 import com.mascotas.empleados.service.PostManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.DELETE,RequestMethod.PUT})
 @RestController
 public class PostController {
 
