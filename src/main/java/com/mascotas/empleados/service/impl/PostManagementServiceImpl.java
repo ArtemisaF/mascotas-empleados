@@ -183,14 +183,18 @@ public class PostManagementServiceImpl implements PostManagementService {
         }
     }
     @Override
-    public MacotasDto getById(String id) throws ExecutionException, InterruptedException {
+    public MacotasDto getById(String id)  {
         DocumentReference doc= getCollectionM().document(id);
         ApiFuture<DocumentSnapshot> future = doc.get();
-        DocumentSnapshot document = future.get();
-        if (document.exists()) {
-            MacotasDto res = (MacotasDto) document.getData();
-            return res;
-        } else {
+        try {
+            DocumentSnapshot document = future.get();
+            if (document.exists()) {
+                MacotasDto res = document.toObject(MacotasDto.class);
+                return res;
+            } else {
+                return null;
+            }
+        } catch (Exception e) {
             return null;
         }
 
