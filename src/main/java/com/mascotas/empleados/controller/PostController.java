@@ -25,6 +25,10 @@ public class PostController {
         return new ResponseEntity(service.getAllM(),HttpStatus.OK);
     }
 
+    @RequestMapping(value = "mascota/{id}",method = RequestMethod.GET)
+    public ResponseEntity getById(@PathVariable(value = "id")String id){
+        return new ResponseEntity(service.getById(id),HttpStatus.OK);
+    }
 
     @RequestMapping(value = "empleado",method = RequestMethod.POST)
     public ResponseEntity add(@RequestBody EmpleadosDto post){

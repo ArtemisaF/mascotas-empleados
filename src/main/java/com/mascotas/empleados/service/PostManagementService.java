@@ -18,4 +18,5 @@ public interface PostManagementService {
     Boolean actualizarTrasporte(String id);
     Boolean fechaEntrada(String id,String fecha);
     Boolean fechaRecogida(String id,String fecha);
+    MacotasDto getById(String id);
 }
