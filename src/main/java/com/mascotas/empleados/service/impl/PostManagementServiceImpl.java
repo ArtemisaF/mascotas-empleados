@@ -190,6 +190,7 @@ public class PostManagementServiceImpl implements PostManagementService {
             DocumentSnapshot document = future.get();
             if (document.exists()) {
                 MacotasDto res = document.toObject(MacotasDto.class);
+                res.setId(document.getId());
                 return res;
             } else {
                 return null;
