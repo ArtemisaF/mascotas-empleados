@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.concurrent.ExecutionException;
+
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.DELETE,RequestMethod.PUT})
 @RestController
 public class PostController {
@@ -26,7 +28,7 @@ public class PostController {
     }
 
     @RequestMapping(value = "mascota/Byid/{id}",method = RequestMethod.GET)
-    public ResponseEntity getById(@PathVariable(value = "id")String id){
+    public ResponseEntity getById(@PathVariable(value = "id")String id) throws ExecutionException, InterruptedException {
         return new ResponseEntity(service.getById(id),HttpStatus.OK);
     }
 
