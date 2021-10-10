@@ -25,7 +25,7 @@ public class PostController {
         return new ResponseEntity(service.getAllM(),HttpStatus.OK);
     }
 
-    @RequestMapping(value = "mascota/{id}",method = RequestMethod.GET)
+    @RequestMapping(value = "mascota/Byid/{id}",method = RequestMethod.GET)
     public ResponseEntity getById(@PathVariable(value = "id")String id){
         return new ResponseEntity(service.getById(id),HttpStatus.OK);
     }

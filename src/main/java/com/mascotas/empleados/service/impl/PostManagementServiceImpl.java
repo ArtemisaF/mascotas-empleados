@@ -189,6 +189,7 @@ public class PostManagementServiceImpl implements PostManagementService {
         MacotasDto res;
         DocumentSnapshot doc= (DocumentSnapshot) getCollectionM().document(id).get();
         res = doc.toObject(MacotasDto.class);
+
         return res;
     }
 

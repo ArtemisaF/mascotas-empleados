@@ -40,8 +40,8 @@ public class MacotasDto {
         return HoradeRecogida;
     }
 
-    public String getId() {
-        return id;
+    public String getId(String id) {
+        return this.id;
     }
 
     public void setId(String id) {
