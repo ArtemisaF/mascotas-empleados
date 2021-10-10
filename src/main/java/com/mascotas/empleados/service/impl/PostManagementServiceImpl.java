@@ -286,24 +286,20 @@ public class PostManagementServiceImpl implements PostManagementService {
 
 
     }
-    public Boolean getByEmail(String email) throws ExecutionException, InterruptedException {
+    public String getByEmail(String email) throws ExecutionException, InterruptedException {
         CollectionReference cities =getCollectionP();
         Query query = cities.whereEqualTo("email", email);
         ApiFuture<QuerySnapshot> querySnapshot = query.get();
-        String response = null;
+        PropietariosDto res = null;
 
         try {
             for (DocumentSnapshot document : querySnapshot.get().getDocuments()) {
-                PropietariosDto res = document.toObject(PropietariosDto.class);
-                response= res.getEmail();
+                res = document.toObject(PropietariosDto.class);
+                
             }
-            if (response==email){
-                return Boolean.TRUE;
-            }else {
-                return Boolean.FALSE;
-            }
+            return res.getEmail();
         } catch (Exception e) {
-            return null;
+            return "nosirvo";
         }
     }
 
