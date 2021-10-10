@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 
 @Service
@@ -285,12 +286,12 @@ public class PostManagementServiceImpl implements PostManagementService {
 
 
     }
-    public Boolean getByEmail(String email){
+    public Boolean getByEmail(String email) throws ExecutionException, InterruptedException {
         CollectionReference cities =getCollectionP();
         Query query = cities.whereEqualTo("email", email);
         ApiFuture<QuerySnapshot> querySnapshot = query.get();
 
-        if (querySnapshot!=null){
+        if (querySnapshot.get().getDocuments()!=null){
             return Boolean.TRUE;
         }
         return Boolean.FALSE;
