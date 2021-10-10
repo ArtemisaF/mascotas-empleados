@@ -43,6 +43,11 @@ public class PostController {
         return new ResponseEntity(service.getByIdP(id),HttpStatus.OK);
     }
 
+    @RequestMapping(value = "propietario/ByOwner/{owner}",method = RequestMethod.GET)
+    public ResponseEntity getByOwner(@PathVariable(value = "owner")String owner) throws ExecutionException, InterruptedException {
+        return new ResponseEntity(service.getByOwner(owner),HttpStatus.OK);
+    }
+
     @RequestMapping(value = "propietario/ByEmail/{email}",method = RequestMethod.GET)
     public ResponseEntity getByEmail(@PathVariable(value = "email")String email) throws ExecutionException, InterruptedException {
         return new ResponseEntity(service.getByEmail(email),HttpStatus.OK);

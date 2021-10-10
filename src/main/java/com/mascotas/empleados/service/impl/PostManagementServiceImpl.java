@@ -286,6 +286,27 @@ public class PostManagementServiceImpl implements PostManagementService {
 
 
     }
+
+    @Override
+    public MacotasDto getByOwner(String owner)  {
+        CollectionReference cities =getCollectionM();
+        Query query = cities.whereEqualTo("owner", owner);
+        ApiFuture<QuerySnapshot> querySnapshot = query.get();
+        MacotasDto res = null;
+
+        try {
+            for (DocumentSnapshot document : querySnapshot.get().getDocuments()) {
+                res = document.toObject(MacotasDto.class);
+                return res;
+
+            }
+            return res;
+        } catch (Exception e) {
+            return null;
+        }
+
+
+    }
     public String getByEmail(String email) throws ExecutionException, InterruptedException {
         CollectionReference cities =getCollectionP();
         Query query = cities.whereEqualTo("email", email);
