@@ -174,7 +174,7 @@ public class PostManagementServiceImpl implements PostManagementService {
 
     @Override
     public Boolean fechaRecogida(String id,String fecha){
-        ApiFuture<WriteResult> writeResultApiFuture= getCollectionM().document(id).update("HoradeEntrega",fecha);
+        ApiFuture<WriteResult> writeResultApiFuture= getCollectionM().document(id).update("HoradeRecogida",fecha);
         try {
             if (null != writeResultApiFuture.get()) {
                 return Boolean.TRUE;
