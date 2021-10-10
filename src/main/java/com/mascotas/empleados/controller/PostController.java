@@ -60,4 +60,12 @@ public class PostController {
     public ResponseEntity actualizarTrasporte(@PathVariable(value = "id")String id){
         return new ResponseEntity(service.actualizarTrasporte(id),HttpStatus.OK);
     }
+    @RequestMapping(value = "mascota/fechaEntrada/{id}/{fecha}",method = RequestMethod.PUT)
+    public ResponseEntity fechaEntrada(@PathVariable(value = "id")String id,@PathVariable(value = "fecha")String fecha){
+        return new ResponseEntity(service.fechaEntrada(id,fecha),HttpStatus.OK);
+    }
+    @RequestMapping(value = "mascota/fechaRecogida/{id}/{fecha}",method = RequestMethod.PUT)
+    public ResponseEntity fechaRecogida(@PathVariable(value = "id")String id,@PathVariable(value = "fecha")String fecha){
+        return new ResponseEntity(service.fechaRecogida(id,fecha),HttpStatus.OK);
+    }
 }

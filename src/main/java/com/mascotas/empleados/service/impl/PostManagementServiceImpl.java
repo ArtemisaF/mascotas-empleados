@@ -159,6 +159,31 @@ public class PostManagementServiceImpl implements PostManagementService {
             return Boolean.FALSE;
         }
     }
+    @Override
+    public Boolean fechaEntrada(String id,String fecha){
+        ApiFuture<WriteResult> writeResultApiFuture= getCollectionM().document(id).update("HoradeEntrega",fecha);
+        try {
+            if (null != writeResultApiFuture.get()) {
+                return Boolean.TRUE;
+            }
+            return Boolean.FALSE;
+        } catch (Exception e) {
+            return Boolean.FALSE;
+        }
+    }
+
+    @Override
+    public Boolean fechaRecogida(String id,String fecha){
+        ApiFuture<WriteResult> writeResultApiFuture= getCollectionM().document(id).update("HoradeEntrega",fecha);
+        try {
+            if (null != writeResultApiFuture.get()) {
+                return Boolean.TRUE;
+            }
+            return Boolean.FALSE;
+        } catch (Exception e) {
+            return Boolean.FALSE;
+        }
+    }
 
     private CollectionReference getCollection() {
         return firebase.getFirestore().collection("Empleados");

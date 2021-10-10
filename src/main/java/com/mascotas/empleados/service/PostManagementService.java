@@ -16,5 +16,6 @@ public interface PostManagementService {
     Boolean editM(String id, MacotasDto post);
     Boolean deleteM(String id);
     Boolean actualizarTrasporte(String id);
-
+    Boolean fechaEntrada(String id,String fecha);
+    Boolean fechaRecogida(String id,String fecha);
 }
