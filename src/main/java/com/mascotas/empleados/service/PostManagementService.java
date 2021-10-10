@@ -27,4 +27,5 @@ public interface PostManagementService {
     Boolean editP(String id, PropietariosDto post);
     Boolean deleteP(String id);
     PropietariosDto getByIdP(String id);
+    Boolean getByEmail(String email);
 }

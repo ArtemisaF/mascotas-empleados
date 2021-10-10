@@ -285,6 +285,16 @@ public class PostManagementServiceImpl implements PostManagementService {
 
 
     }
+    public Boolean getByEmail(String email){
+        CollectionReference cities =getCollectionP();
+        Query query = cities.whereEqualTo("email", email);
+        ApiFuture<QuerySnapshot> querySnapshot = query.get();
+
+        if (querySnapshot!=null){
+            return Boolean.TRUE;
+        }
+        return Boolean.FALSE;
+    }
 
     private CollectionReference getCollection() {
         return firebase.getFirestore().collection("Empleados");

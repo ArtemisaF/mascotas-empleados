@@ -43,6 +43,11 @@ public class PostController {
         return new ResponseEntity(service.getByIdP(id),HttpStatus.OK);
     }
 
+    @RequestMapping(value = "propietario/ByEmail/{email}",method = RequestMethod.GET)
+    public ResponseEntity getByEmail(@PathVariable(value = "email")String email) throws ExecutionException, InterruptedException {
+        return new ResponseEntity(service.getByEmail(email),HttpStatus.OK);
+    }
+
     @RequestMapping(value = "empleado",method = RequestMethod.POST)
     public ResponseEntity add(@RequestBody EmpleadosDto post){
         return new ResponseEntity(service.add(post), HttpStatus.OK);
