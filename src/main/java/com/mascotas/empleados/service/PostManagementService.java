@@ -21,7 +21,7 @@ public interface PostManagementService {
     Boolean fechaEntrada(String id,String fecha);
     Boolean fechaRecogida(String id,String fecha);
     MacotasDto getById(String id) throws ExecutionException, InterruptedException;
-    MacotasDto getByOwner(String owner);
+    List<MacotasDto> getByOwner(String owner);
 
     Boolean addP(PropietariosDto post);
     List<PropietariosDto> getAllP();

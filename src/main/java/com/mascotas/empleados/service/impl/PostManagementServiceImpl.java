@@ -288,7 +288,8 @@ public class PostManagementServiceImpl implements PostManagementService {
     }
 
     @Override
-    public MacotasDto getByOwner(String owner)  {
+    public List<MacotasDto> getByOwner (String owner)  {
+        List<MacotasDto> response= new ArrayList<>();
         CollectionReference cities =getCollectionM();
         Query query = cities.whereEqualTo("owner", owner);
         ApiFuture<QuerySnapshot> querySnapshot = query.get();
@@ -297,10 +298,10 @@ public class PostManagementServiceImpl implements PostManagementService {
         try {
             for (DocumentSnapshot document : querySnapshot.get().getDocuments()) {
                 res = document.toObject(MacotasDto.class);
-                return res;
+                response.add(res);
 
             }
-            return res;
+            return response;
         } catch (Exception e) {
             return null;
         }
