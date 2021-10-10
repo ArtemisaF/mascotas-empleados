@@ -4,6 +4,7 @@ import com.mascotas.empleados.dto.EmpleadosDto;
 import com.mascotas.empleados.dto.MacotasDto;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public interface PostManagementService {
     Boolean add(EmpleadosDto post);
@@ -18,5 +19,5 @@ public interface PostManagementService {
     Boolean actualizarTrasporte(String id);
     Boolean fechaEntrada(String id,String fecha);
     Boolean fechaRecogida(String id,String fecha);
-    MacotasDto getById(String id);
+    MacotasDto getById(String id) throws ExecutionException, InterruptedException;
 }

@@ -1,10 +1,7 @@
 package com.mascotas.empleados.service.impl;
 
 import com.google.api.core.ApiFuture;
-import com.google.cloud.firestore.CollectionReference;
-import com.google.cloud.firestore.DocumentSnapshot;
-import com.google.cloud.firestore.QuerySnapshot;
-import com.google.cloud.firestore.WriteResult;
+import com.google.cloud.firestore.*;
 import com.mascotas.empleados.dto.EmpleadosDto;
 import com.mascotas.empleados.dto.MacotasDto;
 import com.mascotas.empleados.firebase.FirebaseInitializer;
@@ -16,6 +13,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 
 @Service
@@ -185,14 +183,17 @@ public class PostManagementServiceImpl implements PostManagementService {
         }
     }
     @Override
-    public MacotasDto getById(String id){
-        DocumentSnapshot doc= (DocumentSnapshot) getCollectionM().document(id).get();
-        try {
-            MacotasDto res = (MacotasDto) doc.getData();
+    public MacotasDto getById(String id) throws ExecutionException, InterruptedException {
+        DocumentReference doc= getCollectionM().document(id);
+        ApiFuture<DocumentSnapshot> future = doc.get();
+        DocumentSnapshot document = future.get();
+        if (document.exists()) {
+            MacotasDto res = (MacotasDto) document.getData();
             return res;
-        } catch (Exception e) {
+        } else {
             return null;
         }
+
 
     }
 
