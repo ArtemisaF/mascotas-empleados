@@ -294,7 +294,8 @@ public class PostManagementServiceImpl implements PostManagementService {
 
         try {
             for (DocumentSnapshot document : querySnapshot.get().getDocuments()) {
-                response= document.getId();
+                PropietariosDto res = document.toObject(PropietariosDto.class);
+                response= res.getEmail();
             }
             if (response==email){
                 return Boolean.TRUE;
