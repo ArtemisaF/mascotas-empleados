@@ -303,7 +303,7 @@ public class PostManagementServiceImpl implements PostManagementService {
                 return Boolean.FALSE;
             }
         } catch (Exception e) {
-            return Boolean.FALSE;
+            return null;
         }
     }
 
