@@ -290,11 +290,20 @@ public class PostManagementServiceImpl implements PostManagementService {
         CollectionReference cities =getCollectionP();
         Query query = cities.whereEqualTo("email", email);
         ApiFuture<QuerySnapshot> querySnapshot = query.get();
+        String response = null;
 
-        if (querySnapshot.get().getDocuments()!=null){
-            return Boolean.TRUE;
+        try {
+            for (DocumentSnapshot document : querySnapshot.get().getDocuments()) {
+                response= document.getId();
+            }
+            if (response==email){
+                return Boolean.TRUE;
+            }else {
+                return Boolean.FALSE;
+            }
+        } catch (Exception e) {
+            return Boolean.FALSE;
         }
-        return Boolean.FALSE;
     }
 
     private CollectionReference getCollection() {
