@@ -2,6 +2,7 @@ package com.mascotas.empleados.service;
 
 import com.mascotas.empleados.dto.EmpleadosDto;
 import com.mascotas.empleados.dto.MacotasDto;
+import com.mascotas.empleados.dto.PropietariosDto;
 
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -20,4 +21,10 @@ public interface PostManagementService {
     Boolean fechaEntrada(String id,String fecha);
     Boolean fechaRecogida(String id,String fecha);
     MacotasDto getById(String id) throws ExecutionException, InterruptedException;
+
+    Boolean addP(PropietariosDto post);
+    List<PropietariosDto> getAllP();
+    Boolean editP(String id, PropietariosDto post);
+    Boolean deleteP(String id);
+    PropietariosDto getByIdP(String id);
 }

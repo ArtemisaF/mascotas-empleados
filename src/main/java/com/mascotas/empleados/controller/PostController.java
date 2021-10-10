@@ -2,6 +2,7 @@ package com.mascotas.empleados.controller;
 
 import com.mascotas.empleados.dto.EmpleadosDto;
 import com.mascotas.empleados.dto.MacotasDto;
+import com.mascotas.empleados.dto.PropietariosDto;
 import com.mascotas.empleados.service.PostManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,6 +23,11 @@ public class PostController {
         return new ResponseEntity(service.getAll(),HttpStatus.OK);
     }
 
+    @RequestMapping(value = "getPropietarios",method = RequestMethod.GET)
+    public ResponseEntity getAllP(){
+        return new ResponseEntity(service.getAllP(),HttpStatus.OK);
+    }
+
     @RequestMapping(value = "getMascotas",method = RequestMethod.GET)
     public ResponseEntity getAllM(){
         return new ResponseEntity(service.getAllM(),HttpStatus.OK);
@@ -32,9 +38,19 @@ public class PostController {
         return new ResponseEntity(service.getById(id),HttpStatus.OK);
     }
 
+    @RequestMapping(value = "propietario/ByidP/{id}",method = RequestMethod.GET)
+    public ResponseEntity getByIdP(@PathVariable(value = "id")String id) throws ExecutionException, InterruptedException {
+        return new ResponseEntity(service.getByIdP(id),HttpStatus.OK);
+    }
+
     @RequestMapping(value = "empleado",method = RequestMethod.POST)
     public ResponseEntity add(@RequestBody EmpleadosDto post){
         return new ResponseEntity(service.add(post), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "propietario",method = RequestMethod.POST)
+    public ResponseEntity addP(@RequestBody PropietariosDto post){
+        return new ResponseEntity(service.addP(post), HttpStatus.OK);
     }
 
     @RequestMapping(value = "mascota",method = RequestMethod.POST)
@@ -47,6 +63,11 @@ public class PostController {
         return new ResponseEntity(service.edit(id,post),HttpStatus.OK);
     }
 
+    @RequestMapping(value = "propietario/{id}",method = RequestMethod.PUT)
+    public ResponseEntity editP(@PathVariable(value = "id")String id,@RequestBody PropietariosDto post){
+        return new ResponseEntity(service.editP(id,post),HttpStatus.OK);
+    }
+
     @RequestMapping(value = "mascota/{id}",method = RequestMethod.PUT)
     public ResponseEntity editM(@PathVariable(value = "id")String id,@RequestBody MacotasDto post){
         return new ResponseEntity(service.editM(id,post),HttpStatus.OK);
@@ -55,6 +76,11 @@ public class PostController {
     @RequestMapping(value = "empleado/{id}",method = RequestMethod.DELETE)
     public ResponseEntity delete(@PathVariable(value = "id")String id){
         return new ResponseEntity(service.delete(id),HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "propietario/{id}",method = RequestMethod.DELETE)
+    public ResponseEntity deleteP(@PathVariable(value = "id")String id){
+        return new ResponseEntity(service.deleteP(id),HttpStatus.OK);
     }
 
     @RequestMapping(value = "mascota/{id}",method = RequestMethod.DELETE)
