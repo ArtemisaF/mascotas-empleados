@@ -15,4 +15,6 @@ public interface PostManagementService {
     List<MacotasDto> getAllM();
     Boolean editM(String id, MacotasDto post);
     Boolean deleteM(String id);
+    Boolean actualizarTrasporte(String id);
+
 }

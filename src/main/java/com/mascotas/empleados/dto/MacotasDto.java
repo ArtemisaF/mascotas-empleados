@@ -12,6 +12,33 @@ public class MacotasDto {
     private String owner;
     private String raza;
     private String tamaño;
+    private String Trasporte;
+    private String HoradeEntrega;
+    private String HoradeRecogida;
+
+    public void setTrasporte(String trasporte) {
+        Trasporte = trasporte;
+    }
+
+    public void setHoradeEntrega(String horadeEntrega) {
+        HoradeEntrega = horadeEntrega;
+    }
+
+    public void setHoradeRecogida(String horadeRecogida) {
+        HoradeRecogida = horadeRecogida;
+    }
+
+    public String getTrasporte() {
+        return Trasporte;
+    }
+
+    public String getHoradeEntrega() {
+        return HoradeEntrega;
+    }
+
+    public String getHoradeRecogida() {
+        return HoradeRecogida;
+    }
 
     public String getId() {
         return id;

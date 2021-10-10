@@ -147,6 +147,19 @@ public class PostManagementServiceImpl implements PostManagementService {
         }
     }
 
+    @Override
+    public Boolean actualizarTrasporte(String id){
+        ApiFuture<WriteResult> writeResultApiFuture= getCollectionM().document(id).update("Trasporte","Agendado");
+        try {
+            if (null != writeResultApiFuture.get()) {
+                return Boolean.TRUE;
+            }
+            return Boolean.FALSE;
+        } catch (Exception e) {
+            return Boolean.FALSE;
+        }
+    }
+
     private CollectionReference getCollection() {
         return firebase.getFirestore().collection("Empleados");
     }

@@ -55,4 +55,9 @@ public class PostController {
     public ResponseEntity deleteM(@PathVariable(value = "id")String id){
         return new ResponseEntity(service.deleteM(id),HttpStatus.OK);
     }
+
+    @RequestMapping(value = "mascota/trasporte/{id}",method = RequestMethod.PUT)
+    public ResponseEntity actualizarTrasporte(@PathVariable(value = "id")String id){
+        return new ResponseEntity(service.actualizarTrasporte(id),HttpStatus.OK);
+    }
 }
