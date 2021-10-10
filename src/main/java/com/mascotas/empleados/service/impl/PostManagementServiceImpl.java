@@ -187,8 +187,13 @@ public class PostManagementServiceImpl implements PostManagementService {
     @Override
     public MacotasDto getById(String id){
         DocumentSnapshot doc= (DocumentSnapshot) getCollectionM().document(id).get();
-        MacotasDto res = (MacotasDto) doc.getData();
-        return res;
+        try {
+            MacotasDto res = (MacotasDto) doc.getData();
+            return res;
+        } catch (Exception e) {
+            return null;
+        }
+
     }
 
     private CollectionReference getCollection() {
