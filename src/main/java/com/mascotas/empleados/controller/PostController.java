@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.concurrent.ExecutionException;
 
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.DELETE,RequestMethod.PUT})
 @RestController
 public class PostController {
 
