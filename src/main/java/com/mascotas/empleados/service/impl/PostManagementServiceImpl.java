@@ -298,6 +298,7 @@ public class PostManagementServiceImpl implements PostManagementService {
         try {
             for (DocumentSnapshot document : querySnapshot.get().getDocuments()) {
                 res = document.toObject(MacotasDto.class);
+                res.setId(document.getId());
                 response.add(res);
 
             }
