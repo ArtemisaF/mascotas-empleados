@@ -15,6 +15,11 @@ public class MacotasDto {
     private String Trasporte;
     private String HoradeEntrega;
     private String HoradeRecogida;
+    private String Actividad;
+
+    public String getActividad() {
+        return Actividad;
+    }
 
     public void setTrasporte(String trasporte) {
         Trasporte = trasporte;

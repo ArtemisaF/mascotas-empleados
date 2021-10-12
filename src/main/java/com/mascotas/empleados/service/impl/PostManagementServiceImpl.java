@@ -351,6 +351,7 @@ public class PostManagementServiceImpl implements PostManagementService {
         docData.put("name",post.getName());
         docData.put("edad",post.getEdad());
         docData.put("cuidados",post.getCuidados());
+        docData.put("actividad",post.getActividad());
         return docData;
     }
     private CollectionReference getCollectionP() {
